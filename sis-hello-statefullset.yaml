@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sis-hello-statefulset
+spec:
+  selector:
+    matchLabels:
+      app: hello
+  serviceName: svc-hellokenobi
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hello
+      name: hello
+    spec:
+      containers:
+        - name: hellokenobi-pod
+          image: darlankenobi/hellokenobi:latest
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: sis-configmap
+          volumeMounts:
+            - name: images
+              mountPath: /home/darlan/site-images
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            periodSeconds: 10
+            failureThreshold: 5
+            initialDelaySeconds: 3
+          resources:
+            requests:
+              cpu: 50m          
+      volumes:
+        - name: images
+          persistentVolumeClaim:
+            claimName: images-pvc

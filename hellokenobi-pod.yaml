@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hellokenobi-pod
+  labels:
+    app: hello
+spec:
+  containers:
+    - name: hellokenobi-pod
+      image: darlankenobi/hellokenobi:latest
+      ports:
+        - containerPort: 8080
+      envFrom:
+        - configMapRef:
+            name: sis-configmap

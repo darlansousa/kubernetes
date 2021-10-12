@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sis-configmap
+data:
+    DB_URL: jdbc:mysql://svc-hellokenobi-db:3306/hello
+    DB_PASS: Caronte1212#
+    DB_USER: root
+    

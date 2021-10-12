@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hellokenobi-pod-db-deployment
+  labels:
+    app: hello-db
+spec:
+  template:
+    metadata:
+      name: hellokenobi-pod-db
+      labels:
+        app: hello-db
+    spec:
+      containers:
+        - name: hellokenobi-pod
+          image: mysql
+          ports:
+            - containerPort: 3306
+          envFrom:
+            - configMapRef:
+                name: db-configmap
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: data-pvc
+  selector:
+    matchLabels:
+      app: hello-db
+      

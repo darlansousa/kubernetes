@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-configmap
+data:
+    MYSQL_ROOT_PASSWORD: Caronte1212#
+    MYSQL_PASSWORD: Caronte1212#
+    MYSQL_DATABASE: hello
+    

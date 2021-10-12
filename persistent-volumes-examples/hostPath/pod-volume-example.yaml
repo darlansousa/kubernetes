@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-volume
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+      volumeMounts:
+        - mountPath: /volume-dentro-container
+          name: primeiro-valume
+    - name: jenkins-container
+      image: jenkins:2.60.3-alpine
+      volumeMounts:
+        - mountPath: /volume-dentro-container
+          name: primeiro-valume
+  volumes:
+    - name: primeiro-valume
+      hostPath:
+        path: /home/darlan/Desktop/primeiro-valume
+        type: DirectoryOrCreate
