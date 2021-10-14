@@ -16,3 +16,16 @@ O Segundo problema é o compartilhamento de arquvos entre contêiners executados
 Volumes se trata de uma abstração para resolver estes problemas.
 ### Escalabilidade
 Com o Horizontal Pod Autoscaler é possível escalar o número de pods de forma automática.
+
+### Comandos mais utilizados
+apply -  Aplicar um template yaml
+get - pegar um recurso
+exec - executar um comando em um pod
+logs -  retorna logs da aplicação
+describe - descreve um item do kubernetes
+delete -  remove algum item
+edit - edita algum item
+cp - copia um item
+port-foward - redirecionamento de tráfego
+top - descreve o uso de recuros
+create -  cria recurso a partir de um template
